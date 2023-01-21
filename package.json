@@ -1,0 +1,30 @@
+{
+  "name": "module18-challenge",
+  "version": "1.0.0",
+  "description": "Social Network API",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mbenitez1607/module18-challenge.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "mongodb",
+    "mongoose"
+  ],
+  "author": "mbenitez1607",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mbenitez1607/module18-challenge/issues"
+  },
+  "homepage": "https://github.com/mbenitez1607/module18-challenge#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^6.0.13"
+  }
+}
