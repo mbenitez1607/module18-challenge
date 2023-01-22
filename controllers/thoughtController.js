@@ -1,5 +1,5 @@
 const { ObjectId } = require('mongoose').Types;
-const { Thought } = require('../models');
+const { User, Thought } = require('../models');
 
 module.exports = {
   // Get all thoughts
@@ -35,8 +35,24 @@ module.exports = {
   // Post a new thought
   postThought(req, res) {
     Thought.create(req.body)
-      .then((thought) => res.json(thought))
-      .catch((err) => res.status(500).json(err));
+      .then((thought) => {
+        return User.findOneAndUpdate(
+        { _id: req.body.userId },
+        { $addToSet: { thoughts: thought._id } },
+        { new: true }
+      );
+    })
+    .then((user) =>
+      !user
+        ? res.status(404).json({
+            message: 'Thought can\'t be created, no user with that ID',
+          })
+        : res.json('Thought has been posted')
+    )
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
   },
   // Delete a thought
   deleteThought(req, res) {
