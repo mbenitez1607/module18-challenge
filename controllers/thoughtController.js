@@ -65,4 +65,40 @@ module.exports = {
             )
             .catch((err) => res.status(500).json(err));
     },
-  };
+    // Add a reaction to a thought
+    addReaction(req, res) {
+        console.log('User is adding a reaction to a thought');
+        console.log(req.params.thoughtId);
+        Thought.findOneAndUpdate(
+          { _id: req.params.thoughtId },
+          { $addToSet: { reactions: req.body } },
+          { runValidators: true, new: true }
+        )
+          .then((thought) =>
+            !thought
+              ? res
+                  .status(404)
+                  .json({ message: 'No thought with that ID' })
+              : res.json(thought)
+          )
+          .catch((err) => res.status(500).json(err));
+      },
+      // Remove a reaction to a thought
+      removeReaction(req, res) {
+          console.log('User is removing a reaction from a thought');
+          console.log(req.body.reactionId);
+          Thought.findOneAndUpdate(
+          { _id: req.params.thoughtId },
+          { $pull: { reactions: { reactionId: req.body.reactionId } } },
+          { runValidators: true, new: true }
+        )
+          .then((thought) =>
+            !thought
+              ? res
+                  .status(404)
+                  .json({ message: 'No thought with that ID' })
+              : res.json(thought)
+          )
+          .catch((err) => res.status(500).json(err));
+      },
+};
