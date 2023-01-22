@@ -14,7 +14,7 @@ const thoughtSchema = new Schema(
         type: Date,
         default: Date.now,
         get: (date) => {
-            if (date) return date.toDateString();
+            if (date) return date.toString();
           },
     },
     username: {
