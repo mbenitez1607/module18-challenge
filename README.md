@@ -29,8 +29,12 @@ To run your own version of the app do the following:
   show in the console:
   `API server running on port 3001!`
 
+The following gif shows what the different routes and DB look like:
+
 Note: this repository does not include a frontend. The DB and 
       route functionality must be tested wiht an app like Insomnia or Postman. 
+
+![Social Network API in action](./module18-challenge.gif)
 
 ## License
 
